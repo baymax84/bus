@@ -1,6 +1,8 @@
 import urllib2
 import json
 import datetime, time
+import logging
+import os, errno
 
 DATADIR = "/home/chenyang/opt/bus/data"
 DATADIR = "."
@@ -12,7 +14,6 @@ LINELIST = [
 "%E8%BF%90%E9%80%9A113(%E5%90%B4%E5%BA%84-%E6%9D%A5%E5%B9%BF%E8%90%A5%E5%8C%97)"
 ]
 
-import os, errno
 
 def mkdir_p(path):
     try:
@@ -30,6 +31,7 @@ def try_line(linename) :
 	data = json.loads(contents)
 	
 	if data["root"]["status"] == "200" :
+		logger.debug("download data.")
 		# prepare data dir
 		now = datetime.datetime.now()
 		output_path = DATADIR + "/" + now.strftime("%Y%m%d")
@@ -40,8 +42,19 @@ def try_line(linename) :
 		text_file.write(contents)
 		text_file.close()
 	else :
-		print linename + " : night"
+		logger.debug( linename + " : night")
 
-for ln in LINELIST:
-	try_line(ln)
-	time.sleep(5)
+def main():
+
+	for ln in LINELIST:
+		try_line(ln)
+		time.sleep(5)
+
+if __name__ == '__main__':
+	import logging.config
+	logging.config.fileConfig('/home/chenyang/opt/bus/bus/conf/log.conf')
+
+	logger = logging.getLogger(__name__)
+	logger.debug('start...')
+
+	main()
