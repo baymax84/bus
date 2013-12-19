@@ -7,8 +7,10 @@ DATADIR = "."
 
 CITY = "%E5%8C%97%E4%BA%AC"
 
-LINENAME113="%E8%BF%90%E9%80%9A113(%E6%9D%A5%E5%B9%BF%E8%90%A5%E5%8C%97-%E5%90%B4%E5%BA%84)"
-LINENAME113_2="%E8%BF%90%E9%80%9A113(%E5%90%B4%E5%BA%84-%E6%9D%A5%E5%B9%BF%E8%90%A5%E5%8C%97)"
+LINELIST = [
+"%E8%BF%90%E9%80%9A113(%E6%9D%A5%E5%B9%BF%E8%90%A5%E5%8C%97-%E5%90%B4%E5%BA%84)",
+"%E8%BF%90%E9%80%9A113(%E5%90%B4%E5%BA%84-%E6%9D%A5%E5%B9%BF%E8%90%A5%E5%8C%97)"
+]
 
 import os, errno
 
@@ -38,10 +40,8 @@ def try_line(linename) :
 		text_file.write(contents)
 		text_file.close()
 	else :
-		print "night"
+		print linename + " : night"
 
-try_line(LINENAME113)
-
-time.sleep(5)
-
-try_line(LINENAME113_2)
+for ln in LINELIST:
+	try_line(ln)
+	time.sleep(5)
