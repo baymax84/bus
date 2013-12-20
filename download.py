@@ -1,4 +1,7 @@
-import urllib2
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
+import urllib2, urllib
 import json
 import datetime, time
 import logging
@@ -6,11 +9,11 @@ import os, errno
 
 DATADIR = "/home/chenyang/opt/bus/data"
 
-CITY = "%E5%8C%97%E4%BA%AC"
+CITY = u"北京"
 
 LINELIST = [
-"%E8%BF%90%E9%80%9A113(%E6%9D%A5%E5%B9%BF%E8%90%A5%E5%8C%97-%E5%90%B4%E5%BA%84)",
-"%E8%BF%90%E9%80%9A113(%E5%90%B4%E5%BA%84-%E6%9D%A5%E5%B9%BF%E8%90%A5%E5%8C%97)"
+u"运通113(来广营北-吴庄)",
+u"运通113(吴庄-来广营北)"
 ]
 
 
@@ -24,7 +27,11 @@ def mkdir_p(path):
 
 
 def try_line(linename) :
-	url = "http://bjgj.aibang.com:8899/bjgj.php?city=" + CITY + "&linename=" + linename + "&stationNo=31&datatype=json&type=0"
+	encode_linename = urllib2.quote(linename.encode("utf8"))
+	encode_city = urllib2.quote(CITY.encode("utf8"))
+	url = "http://bjgj.aibang.com:8899/bjgj.php?city=" + encode_city + "&linename=" + encode_linename + "&stationNo=31&datatype=json&type=0"
+	logger.debug("url : " + url)
+
 	request = urllib2.Request(url, headers={"Accept" : "text/html"})
 	contents = urllib2.urlopen(request).read()
 	data = json.loads(contents)
@@ -33,7 +40,7 @@ def try_line(linename) :
 		logger.debug("download data.")
 		# prepare data dir
 		now = datetime.datetime.now()
-		output_path = DATADIR + "/" + now.strftime("%Y%m%d") + "/" + urllib.unquote(linename).decode('utf8')
+		output_path = DATADIR + "/" + now.strftime("%Y%m%d") + "/" + linename
 		output_file = output_path + "/" + now.strftime("%Y%m%d_%H%M%S") + ".json"
 		mkdir_p(output_path)
 		# save data to file
@@ -48,7 +55,7 @@ def main():
 
 	for ln in LINELIST:
 		try_line(ln)
-		time.sleep(5)
+		time.sleep(2)
 
 if __name__ == '__main__':
 	import logging.config
