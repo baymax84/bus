@@ -5,7 +5,6 @@ import logging
 import os, errno
 
 DATADIR = "/home/chenyang/opt/bus/data"
-DATADIR = "."
 
 CITY = "%E5%8C%97%E4%BA%AC"
 
