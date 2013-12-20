@@ -1,0 +1,8 @@
+1. Collect bus data
+  - [fix-20131220] demo code, download only one bus line data.
+  - download all bus line data, keep offline data.
+  - fetch all bus line data, every minute.
+  - do some error check on offline bus line data, try to fetch new data.
+2. Analysis old bus data
+3. Analysis real time bus data
+  - show the traffic status
