@@ -33,7 +33,7 @@ def try_line(linename) :
 		logger.debug("download data.")
 		# prepare data dir
 		now = datetime.datetime.now()
-		output_path = DATADIR + "/" + now.strftime("%Y%m%d")
+		output_path = DATADIR + "/" + now.strftime("%Y%m%d") + "/" + urllib.unquote(linename).decode('utf8')
 		output_file = output_path + "/" + now.strftime("%Y%m%d_%H%M%S") + ".json"
 		mkdir_p(output_path)
 		# save data to file
