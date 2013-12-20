@@ -38,6 +38,7 @@ def try_line(linename) :
 		output_file = output_path + "/" + now.strftime("%Y%m%d_%H%M%S") + ".json"
 		mkdir_p(output_path)
 		# save data to file
+		logger.debug("write data to file : " + output_file)
 		text_file = open(output_file, "w")
 		text_file.write(contents)
 		text_file.close()
