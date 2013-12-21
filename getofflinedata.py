@@ -33,38 +33,42 @@ def try_line(linename) :
 	encode_linename = urllib2.quote(linename.encode("utf8"))
 	encode_city = urllib2.quote(CITY.encode("utf8"))
 	url = "http://openapi.aibang.com/bus/lines?app_key=" + APIKEY + "&city=" + encode_city + "&q=" + encode_linename + "&alt=json"
-	logger.debug("url : " + url)
+	#logger.debug("url : " + url)
 
 	request = urllib2.Request(url, headers={"Accept" : "text/html"})
 	contents = urllib2.urlopen(request).read()
 	data = json.loads(contents)
-	
-	if data["root"]["status"] == "200" :
-		logger.debug("download data.")
-		# prepare data dir
-		now = datetime.datetime.now()
-		output_path = DATADIR + "/" + now.strftime("%Y%m%d") + "/" + linename
-		output_file = output_path + "/" + now.strftime("%Y%m%d_%H%M%S") + ".json"
-		mkdir_p(output_path)
-		# save data to file
-		logger.debug("write data to file : " + output_file)
-		text_file = open(output_file, "w")
-		text_file.write(contents)
-		text_file.close()
-	else :
-		logger.debug( linename + " : night")
+	print data["result_num"]
+
+	print data["lines"]["line"][0]["name"]
+
+	#if data["root"]["status"] == "200" :
+	#	logger.debug("download data.")
+	#	# prepare data dir
+	#	now = datetime.datetime.now()
+	#	output_path = DATADIR + "/" + now.strftime("%Y%m%d") + "/" + linename
+	#	output_file = output_path + "/" + now.strftime("%Y%m%d_%H%M%S") + ".json"
+	#	mkdir_p(output_path)
+	#	# save data to file
+	#	logger.debug("write data to file : " + output_file)
+	#	text_file = open(output_file, "w")
+	#	text_file.write(contents)
+	#	text_file.close()
+	#else :
+	#	logger.debug( linename + " : night")
 
 def main():
 
-	for b in BUSLIST:
-		try_line(b)
-		time.sleep(2)
+	try_line(BUSLIST[0])
+	#for b in BUSLIST:
+	#	try_line(b)
+	#	time.sleep(2)
 
 if __name__ == '__main__':
 	import logging.config
 	logging.config.fileConfig('/home/chenyang/opt/bus/bus/conf/log.getofflinedata.conf')
 
-	logger = logging.getLogger(__name__)
-	logger.debug('start...')
+	#logger = logging.getLogger(__name__)
+	#logger.debug('start...')
 
 	main()
