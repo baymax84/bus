@@ -17,6 +17,15 @@ u"运通113(吴庄-来广营北)"
 ]
 
 
+LINELIST = []
+jsonfile = load(DATADIR+"/bus.json", "r")
+busdata = json.load(jsonfile)
+for b in busdata:
+	LINELIST.append(b["aibang"])
+
+
+
+
 def mkdir_p(path):
     try:
         os.makedirs(path)
