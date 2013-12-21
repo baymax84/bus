@@ -40,9 +40,9 @@ def try_line(linename) :
 	print data["result_num"]
 	offlinedata = {}
 	offlinedata[linename] = {}
-	offlinedata[linename]["aibang"] = data["lines"]["line"][0]["name"]
+	offlinedata[linename]["aibang"] = data["lines"]["line"][0]["name"].encode("utf8")
 	with open(DATADIR+"/bus.json", "w") as outfile:
-		json.dump(offlinedata, outfile)
+		json.dump(offlinedata, outfile, ensure_ascii = False)
 
 def main():
 
