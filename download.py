@@ -7,7 +7,7 @@ import datetime, time
 import logging
 import os, errno
 
-DATADIR = "/home/chenyang/opt/bus/data"
+DATADIR = "/home/chenyang/Dropbox/bus/data"
 
 CITY = u"北京"
 
