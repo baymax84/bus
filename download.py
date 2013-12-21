@@ -8,6 +8,7 @@ import logging
 import os, errno
 
 DATADIR = "/home/chenyang/Dropbox/bus/data"
+APPDIR = "/home/chenyang/opt/bus"
 
 CITY = u"北京"
 
@@ -68,7 +69,7 @@ def main():
 
 if __name__ == '__main__':
 	import logging.config
-	logging.config.fileConfig('/home/chenyang/opt/bus/bus/conf/log.conf')
+	logging.config.fileConfig(APPDIR+'/bus/conf/log.conf')
 
 	logger = logging.getLogger(__name__)
 	logger.debug('start...')

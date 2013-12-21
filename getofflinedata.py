@@ -7,14 +7,15 @@ import datetime, time
 import logging
 import os, errno
 
-DATADIR = "/home/chenyang/opt/bus/data"
+DATADIR = "/home/chenyang/Dropbox/bus/data"
+APPDIR = "/home/chenyang/opt/bus"
 
 APIKEY = "f41c8afccc586de03a99c86097e98ccb"
 
 CITY = u"北京"
 
 # data from http://www.arcgis.com/home/item.html?id=e0f8316d91fb43d49a81a76946f9a03c
-infile = open(DATADIR+"/../bus/bus.txt")
+infile = open(APPDIR+"/bus/bus.txt")
 ALLBUS = infile.read()
 
 BUSLIST = ALLBUS.split(",")
@@ -53,7 +54,7 @@ def main():
 
 if __name__ == '__main__':
 	import logging.config
-	logging.config.fileConfig('/home/chenyang/opt/bus/bus/conf/log.getofflinedata.conf')
+	logging.config.fileConfig(APPDIR+'/bus/conf/log.getofflinedata.conf')
 
 	#logger = logging.getLogger(__name__)
 	#logger.debug('start...')
