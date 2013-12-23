@@ -15,7 +15,7 @@ APIKEY = "f41c8afccc586de03a99c86097e98ccb"
 CITY = u"北京"
 
 # data from http://www.arcgis.com/home/item.html?id=e0f8316d91fb43d49a81a76946f9a03c
-infile = open(APPDIR+"/bus/bus.txt")
+infile = open(APPDIR+"/bus/bus.test.txt")
 ALLBUS = infile.read()
 
 BUSLIST = ALLBUS.split(",")
