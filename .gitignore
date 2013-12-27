@@ -1,4 +1,4 @@
-ompiled source #
+# Compiled source #
 ###################
 *.com
 *.class
@@ -6,6 +6,7 @@ ompiled source #
 *.exe
 *.o
 *.so
+*.pyc
 
 # Packages #
 ############
@@ -35,3 +36,4 @@ ompiled source #
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.swp
