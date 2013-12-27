@@ -22,7 +22,7 @@ LINELIST = []
 jsonfile = open(DATADIR+"/bus.json", "r")
 busdata = json.load(jsonfile)
 for b, v in busdata.items():
-	LINELIST.append(v["aibang"])
+	LINELIST.append(b)
 
 
 
