@@ -24,7 +24,7 @@ def check_line(linename) :
 	if data["root"]["status"] == "200" :
 		print("bus has real time data")
 		return True
-	else if data["root"]["status"] == "502":
+	elif data["root"]["status"] == "502":
 		print("[%s] : Message : %s", linename, data["root"]["message"])
 		print("[%s] : Reason : Night or line not exist", linename)
 	else:

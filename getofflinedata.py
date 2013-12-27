@@ -1,12 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
+# builtin module
+
 import urllib2, urllib
 import json
 import datetime, time
 import logging
 import os, errno
 import stat
+
+# custom defined
+
+import check
 
 DATADIR = "/home/chenyang/Dropbox/bus/data"
 APPDIR = "/home/chenyang/opt/bus"
@@ -39,15 +45,24 @@ def line2json(line_obj):
 	if os.stat(DATADIR+"/bus.json")[stat.ST_SIZE] == 0:
 		all_lines_obj = {}
 	else:
-		bus_json_file = open(DATADIR+"/bus.json", "r")
-		all_lines_obj =  json.load(bus_json_file)
-		bus_json_file.close()
+		try:
+			bus_json_file = open(DATADIR+"/bus.json", "r")
+			all_lines_obj =  json.load(bus_json_file)
+			bus_json_file.close()
+		except ValueError:
+			all_lines_obj = {}
 
 	if line_obj["name"].encode("utf8") in all_lines_obj:
 		logger.debug("line exist in json: " + line_obj["name"].encode("utf8"))
 		return False
 
-	all_lines_obj[line_obj["name"]] = {}
+	# whether the bus line has real time data.
+	isreal = "False"
+	if check.check_line(line_obj["name"]):
+		logger.debug("%s has real time data.", line_obj["name"])
+		isreal = "True"
+
+	all_lines_obj[line_obj["name"]] = {"real" : isreal}
 	logger.debug("write to json: " + line_obj["name"].encode("utf8"))
 	#print("write to json: " + line_obj["name"].encode("utf8"))
 	#print("write to json: " + line_obj["name"])
@@ -74,7 +89,7 @@ def main():
 	#try_line(BUSLIST[0])
 	for idx in range(1, 1000):
 		try_line(str(idx))
-		time.sleep(1)
+		#time.sleep(1)
 	#for b in BUSLIST:
 	#	try_line(b)
 	#	time.sleep(2)
