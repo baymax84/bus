@@ -58,7 +58,7 @@ def try_line(linename) :
 		text_file = open(output_file, "w")
 		text_file.write(contents)
 		text_file.close()
-	else if data["root"]["status"] == "502":
+	elif data["root"]["status"] == "502":
 		logger.debug("[%s] : Message : %s", linename, data["root"]["message"])
 		logger.debug("[%s] : Reason : Night or line not exist", linename)
 	else:
