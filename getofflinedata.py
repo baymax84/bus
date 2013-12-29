@@ -17,6 +17,7 @@ import check
 
 DATADIR = "/home/chenyang/Dropbox/bus/data"
 APPDIR = "/home/chenyang/opt/bus"
+BUSFILE = DATADIR + "/bus.json"
 
 APIKEY = "f41c8afccc586de03a99c86097e98ccb"
 
@@ -43,11 +44,11 @@ def line_exist(line_obj, all_lines_obj):
 	return False
 
 def line2json(line_obj):
-	if os.stat(DATADIR+"/bus.json")[stat.ST_SIZE] == 0:
+	if os.stat(BUSFILE)[stat.ST_SIZE] == 0:
 		all_lines_obj = {}
 	else:
 		try:
-			bus_json_file = open(DATADIR+"/bus.json", "r")
+			bus_json_file = open(BUSFILE, "r")
 			all_lines_obj =  json.load(bus_json_file)
 			bus_json_file.close()
 		except ValueError:
@@ -78,7 +79,7 @@ def line2json(line_obj):
 	#print("write to json: " + line_obj["name"].encode("utf8"))
 	#print("write to json: " + line_obj["name"])
 	#print(all_lines_obj)
-	with open(DATADIR+"/bus.json", "w") as outfile:
+	with open(BUSFILE, "w") as outfile:
 		json.dump(all_lines_obj, outfile)#, ensure_ascii = False)
 
 def try_line(query_line) :
