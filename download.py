@@ -68,7 +68,7 @@ def main():
 
 	for ln in LINELIST:
 		try_line(ln)
-		time.sleep(2)
+		time.sleep(0.1)
 
 if __name__ == '__main__':
 	import logging.config
