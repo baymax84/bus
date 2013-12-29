@@ -21,6 +21,8 @@ def check_line(linename) :
 	contents = urllib2.urlopen(request).read()
 	data = json.loads(contents)
 	
+	time.sleep(1)
+	
 	if data["root"]["status"] == "200" :
 		print("bus has real time data")
 		return True
