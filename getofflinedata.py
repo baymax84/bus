@@ -58,18 +58,21 @@ def line2json(line_obj):
 
 	# whether the bus line has real time data.
 	isreal = "False"
+	isreal2 = ""
 	name = line_obj["name"]
 	if check.check_line(name):
 		logger.debug("%s has real time data.", name)
 		isreal = name
+		isreal2 = "yes"
 	elif check.check_line(name.replace(u"路", "")):
 		logger.debug("%s has real time data.", name.replace(u"路", ""))
 		isreal = name.replace(u"路", "")
+		isreal2 = "yes"
 	elif check.check_line(name.replace(u"线", "")):
 		logger.debug("%s has real time data.", name.replace(u"线", ""))
 		isreal = name.replace(u"线", "")
 
-	all_lines_obj[line_obj["name"]] = {"real" : isreal}
+	all_lines_obj[line_obj["name"]] = {"real" : isreal, "real2" : isreal2}
 	logger.debug("write to json: " + line_obj["name"].encode("utf8"))
 	#print("write to json: " + line_obj["name"].encode("utf8"))
 	#print("write to json: " + line_obj["name"])
@@ -96,7 +99,7 @@ def main():
 	#try_line(BUSLIST[0])
 	for idx in range(1, 1000):
 		try_line(str(idx))
-		time.sleep(1)
+		time.sleep(0.1)
 	#for b in BUSLIST:
 	#	try_line(b)
 	#	time.sleep(2)
