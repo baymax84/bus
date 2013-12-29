@@ -9,22 +9,15 @@ import os, errno
 
 DATADIR = "/home/chenyang/Dropbox/bus/data"
 APPDIR = "/home/chenyang/opt/bus"
+BUSFILE = DATADIR + "/bus.json"
 
 CITY = u"北京"
 
+# cor debug
 LINELIST = [
 u"运通113(来广营北-吴庄)",
 u"运通113(吴庄-来广营北)"
 ]
-
-
-LINELIST = []
-jsonfile = open(DATADIR+"/bus.json", "r")
-busdata = json.load(jsonfile)
-for b, v in busdata.items():
-	LINELIST.append(b)
-
-
 
 
 def mkdir_p(path):
@@ -65,6 +58,18 @@ def try_line(linename) :
 		logger.debug("Unkown error!")
 
 def main():
+
+	LINELIST = []
+	jsonfile = open(BUSFILE, "r")
+	busdata = json.load(jsonfile)
+	for b, v in busdata.items():
+		logger.debug("check real time data : %s", b)
+		if v["real"] == "False":
+			logger.debug("bus dont have real time data")
+			continue
+		else:
+			logger.debug("bus has real time data")
+			LINELIST.append(v["real"])
 
 	for ln in LINELIST:
 		try_line(ln)
