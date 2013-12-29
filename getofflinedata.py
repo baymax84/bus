@@ -90,8 +90,18 @@ def try_line(query_line) :
 	#logger.debug("url : " + url)
 
 	request = urllib2.Request(url, headers={"Accept" : "text/html"})
-	contents = urllib2.urlopen(request).read()
-	data = json.loads(contents)
+	try:
+		contents = urllib2.urlopen(request).read()
+	except urllib2.HTTPError, e:
+		print "The server couldn\'t fulfill the request."
+		print "Error code: %s" % e.code
+		return False
+	except urllib2.URLError, e:
+		print "We failed to reach a server."
+		print "Reason: %s" % e.reason
+		return False
+	else:
+		data = json.loads(contents)
 
 	for line_id in range(1, int(data["result_num"])):
 		line2json(data["lines"]["line"][line_id])
