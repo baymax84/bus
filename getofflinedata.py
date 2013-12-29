@@ -9,6 +9,7 @@ import datetime, time
 import logging
 import os, errno
 import stat
+import timeit
 
 # custom defined
 
@@ -96,6 +97,7 @@ def try_line(query_line) :
 		#offlinedata[query_line]["aibang"] = data["lines"]["line"][0]["name"].encode("utf8")
 
 def main():
+	start = timeit.default_timer()	
 	#try_line(BUSLIST[0])
 	for idx in range(1, 1000):
 		try_line(str(idx))
@@ -103,6 +105,7 @@ def main():
 	#for b in BUSLIST:
 	#	try_line(b)
 	#	time.sleep(2)
+	stop = timeit.default_timer()	
 
 if __name__ == '__main__':
 	import logging.config
