@@ -1,0 +1,2 @@
+﻿http://openapi.aibang.com/bus/lines?app_key=f41c8afccc586de03a99c86097e98ccb&city=北京&q=运通113
+http://bjgj.aibang.com:8899/bjgj.php?city=北京&linename=运通113(来广营北-吴庄)&stationNo=31&datatype=json&type=0
