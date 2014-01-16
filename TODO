@@ -5,4 +5,5 @@
   - do some error check on offline bus line data, try to fetch new data.
 2. Analysis old bus data
 3. Analysis real time bus data
+  - notify when bus is going to arrive at the station
   - show the traffic status
