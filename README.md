@@ -1,7 +1,12 @@
 bus
 ===
 
+Big data is interesting.
+
 Download real time bus position data from bjgj.aibang.com:8899
+
+1. Notify you when bus is going to arrive at the given station.
+2. Analysis the bus position data to show the traffic flow.
 
 You can get the old data here: https://www.dropbox.com/sh/rkdkjs5agw9klcc/iRZ5kU2pHD
 I can't limit how you use this data. But I must say this data should be only used for researching, not bad thing.
