@@ -7,6 +7,8 @@ import datetime, time
 import logging
 import os, errno
 
+import xxutils
+
 DATADIR = "/home/chenyang/Dropbox/bus/data"
 APPDIR = "/home/chenyang/opt/bus"
 BUSFILE = DATADIR + "/bus.json"
@@ -18,16 +20,6 @@ LINELIST = [
 u"运通113(来广营北-吴庄)",
 u"运通113(吴庄-来广营北)"
 ]
-
-
-def mkdir_p(path):
-    try:
-        os.makedirs(path)
-    except OSError as exc: # Python >2.5
-        if exc.errno == errno.EEXIST and os.path.isdir(path):
-            pass
-        else: raise
-
 
 def try_line(linename) :
 	encode_linename = urllib2.quote(linename.encode("utf8"))
@@ -45,7 +37,7 @@ def try_line(linename) :
 		now = datetime.datetime.now()
 		output_path = DATADIR + "/" + now.strftime("%Y%m%d") + "/" + linename
 		output_file = output_path + "/" + now.strftime("%Y%m%d_%H%M%S") + ".json"
-		mkdir_p(output_path)
+		xxutils.mkdir_p(output_path)
 		# save data to file
 		logger.debug("write data to file : " + output_file)
 		text_file = open(output_file, "w")
