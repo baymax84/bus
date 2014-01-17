@@ -56,7 +56,7 @@ def main():
 
 if __name__ == '__main__':
     import logging.config
-    logging.config.fileConfig(APPDIR + '/bus/conf/bus_notify.conf')
+    logging.config.fileConfig(APPDIR + '/bus/conf/log.bus_notify.conf')
 
     logger = logging.getLogger(__name__)
     logger.debug('start...')
