@@ -45,8 +45,19 @@ def main():
             logger.debug("[%s] : Next station is : %s", busobj["busid"], busobj["nextStation"])
             logger.debug("[%s] : Distance is : %s", busobj["busid"], busobj["stationDistince"])
             
-            if int(busobj["stationDistince"]) < 3000:
-                xxutils.notify()
+            if int(busobj["stationDistince"]) < 5000:
+                #xxutils.notify()
+                #xxutils.sendmessage(("[%s] : Next station is : %s", busobj["busid"], busobj["nextStation"]))
+                #xxutils.sendmessage(("[%s] : Distance is : %s", busobj["busid"], busobj["stationDistince"]))
+                msg = """
+                Next station is : %s
+                Distance is : %s m
+                Arrivingtime is : %s min
+                """ % (busobj["nextStation"], busobj["stationDistince"], int(busobj["stationRunTimes"])/60)
+                xxutils.sendmessage2(
+                    linename, msg
+                )
+
     
     elif data["root"]["status"] == "502":
         logger.debug("[%s] : Message : %s", linename, data["root"]["message"])
