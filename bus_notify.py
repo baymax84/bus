@@ -22,15 +22,29 @@ STATION = "31"
 # test line
 linename = u"运通113(来广营北-吴庄)"
 
+# receive json from url.
+def request_json(url):
+    request = urllib2.Request(url, headers={"Accept" : "text/html"})
+    try:
+        contents = urllib2.urlopen(request).read()
+    except urllib2.HTTPError, e:
+        print "The server couldn\'t fulfill the request."
+        print "Error code: %s" % e.code
+        return False
+    except urllib2.URLError, e:
+        print "We failed to reach a server."
+        print "Reason: %s" % e.reason
+        return False
+    else:
+        return json.loads(contents)
+
 def main():
     encode_linename = urllib2.quote(linename.encode("utf8"))
     encode_city = urllib2.quote(CITY.encode("utf8"))
     url = "http://bjgj.aibang.com:8899/bjgj.php?city=" + encode_city + "&linename=" + encode_linename + "&stationNo=" + STATION + "&datatype=json&type=0"
     logger.debug("url : " + url)
 
-    request = urllib2.Request(url, headers={"Accept" : "text/html"})
-    contents = urllib2.urlopen(request).read()
-    data = json.loads(contents)
+    data = request_json(url)
     
     # Only getting data will 200, other condition will 502.
     if data["root"]["status"] == "200" :
