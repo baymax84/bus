@@ -27,9 +27,7 @@ def try_line(linename) :
 	url = "http://bjgj.aibang.com:8899/bjgj.php?city=" + encode_city + "&linename=" + encode_linename + "&stationNo=31&datatype=json&type=0"
 	logger.debug("url : " + url)
 
-	request = urllib2.Request(url, headers={"Accept" : "text/html"})
-	contents = urllib2.urlopen(request).read()
-	data = json.loads(contents)
+	data = xxutils.request_json(url)
 	
 	if data["root"]["status"] == "200" :
 		logger.debug("download data.")

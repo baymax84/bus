@@ -13,7 +13,7 @@ import timeit
 
 # custom defined
 
-import check
+import xxutils
 
 DATADIR = "/home/chenyang/Dropbox/bus/data"
 APPDIR = "/home/chenyang/opt/bus"
@@ -62,15 +62,15 @@ def line2json(line_obj):
 	isreal = "False"
 	isreal2 = ""
 	name = line_obj["name"]
-	if check.check_line(name):
+	if xxutils.check_line(name):
 		logger.debug("%s has real time data.", name)
 		isreal = name
 		isreal2 = "yes"
-	elif check.check_line(name.replace(u"路", "")):
+	elif xxutils.check_line(name.replace(u"路", "")):
 		logger.debug("%s has real time data.", name.replace(u"路", ""))
 		isreal = name.replace(u"路", "")
 		isreal2 = "yes"
-	elif check.check_line(name.replace(u"线", "")):
+	elif xxutils.check_line(name.replace(u"线", "")):
 		logger.debug("%s has real time data.", name.replace(u"线", ""))
 		isreal = name.replace(u"线", "")
 
@@ -89,19 +89,7 @@ def try_line(query_line) :
 	url = "http://openapi.aibang.com/bus/lines?app_key=" + APIKEY + "&city=" + encode_city + "&q=" + encode_linename + "&alt=json"
 	#logger.debug("url : " + url)
 
-	request = urllib2.Request(url, headers={"Accept" : "text/html"})
-	try:
-		contents = urllib2.urlopen(request).read()
-	except urllib2.HTTPError, e:
-		print "The server couldn\'t fulfill the request."
-		print "Error code: %s" % e.code
-		return False
-	except urllib2.URLError, e:
-		print "We failed to reach a server."
-		print "Reason: %s" % e.reason
-		return False
-	else:
-		data = json.loads(contents)
+	data = xxutils.request_json(url)
 
 	for line_id in range(1, int(data["result_num"])):
 		line2json(data["lines"]["line"][line_id])
