@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>UIRequiredDeviceCapabilities</key>
+    <dict>
+      <key>armv7</key>
+      <true />
+    </dict>
+	<key>appleId</key>
+	<string>Timothy.D.Cook@apple.com</string>
+	<key>purchaseDate</key>
+	<date>2012-09-09T09:09:09Z</date>
+    <key>artistId</key>
+    <integer>703306509</integer>
+    <key>artistName</key>
+    <string>北京市交通信息中心</string>
+    <key>bundleShortVersionString</key>
+    <string>1.0.2</string>
+    <key>bundleVersion</key>
+    <string>1.0.2</string>
+    <key>copyright</key>
+    <string>北京市交通信息中心</string>
+    <key>drmVersionNumber</key>
+    <integer>0</integer>
+    <key>fileExtension</key>
+    <string>.app</string>
+    <key>genre</key>
+    <string>旅行</string>
+    <key>genreId</key>
+    <integer>6003</integer>
+    <key>itemId</key>
+    <integer>703306506</integer>
+    <key>itemName</key>
+    <string>北京市实时公交</string>
+    <key>kind</key>
+    <string>software</string>
+    <key>playlistArtistName</key>
+    <string>北京市交通信息中心</string>
+    <key>playlistName</key>
+    <string>北京市实时公交</string>
+    <key>product-type</key>
+    <string>ios-app</string>
+    <key>rating</key>
+    <dict>
+      <key>content</key>
+      <string></string>
+      <key>label</key>
+      <string>4+</string>
+      <key>rank</key>
+      <integer>100</integer>
+      <key>system</key>
+      <string>itunes-games</string>
+    </dict>
+    <key>releaseDate</key>
+    <string>2013-10-02T21:36:44Z</string>
+    <key>s</key>
+    <integer>143465</integer>
+    <key>softwareIcon57x57URL</key>
+    <string>http://a1805.phobos.apple.com/us/r30/Purple4/v4/b5/1a/2d/b51a2d3f-6d12-8533-c2ff-c9a4741c0fab/Icon.png</string>
+    <key>softwareIconNeedsShine</key>
+    <false />
+    <key>softwareSupportedDeviceIds</key>
+    <array>
+      <integer>2</integer>
+      <integer>9</integer>
+      <integer>4</integer>
+    </array>
+    <key>softwareVersionBundleId</key>
+    <string>com.aibang.realTimeBus</string>
+    <key>softwareVersionExternalIdentifier</key>
+    <integer>85272867</integer>
+    <key>softwareVersionExternalIdentifiers</key>
+    <array>
+      <integer>22412673</integer>
+      <integer>81652650</integer>
+      <integer>85272867</integer>
+    </array>
+    <key>vendorId</key>
+    <integer>2271961</integer>
+    <key>versionRestrictions</key>
+    <integer>16843008</integer>
+</dict>
+</plist>
+
